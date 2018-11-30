@@ -1,0 +1,18 @@
+sudo: required
+
+language: generic
+
+services:
+  - docker
+
+script:
+  - docker build --rm -f Dockerfile -t bender:$TRAVIS_BRANCH .
+
+after_success:
+   - |
+      if [[ ($TRAVIS_BRANCH == "dev" || $TRAVIS_BRANCH == "master") && $TRAVIS_PULL_REQUEST == "false" ]]; then
+        echo deploying
+        docker login doomhammertestdockerregistry.azurecr.io -u $DOCKER_USERNAME -p $DOCKER_REGISTRY_SERVER_PASSWORD
+        docker tag bender:$TRAVIS_BRANCH doomhammertestdockerregistry.azurecr.io/bender:$TRAVIS_BRANCH
+        docker push doomhammertestdockerregistry.azurecr.io/bender:$TRAVIS_BRANCH
+      fi
