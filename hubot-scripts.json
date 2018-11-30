@@ -1,4 +1,5 @@
 [
     "ambush.coffee",
-    "applause.coffee"
+    "applause.coffee",
+    "base64.coffee"
 ]
