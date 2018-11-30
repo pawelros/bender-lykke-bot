@@ -1,6 +1,5 @@
 [
     "ambush.coffee",
     "applause.coffee",
-    "base64.coffee",
-    "take-the-blame.coffee"
+    "base64.coffee"
 ]
